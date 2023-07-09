@@ -1,0 +1,9 @@
+steps:
+  - name: 'gcr.io/cloud-builders/yarn'
+    args: ['install', '--frozen-lockfile']
+
+  - name: 'gcr.io/cloud-builders/yarn'
+    args: ['build']
+
+  - name: 'gcr.io/cloud-builders/gsutil'
+    args: ['rsync', '-r', 'dist', 'gs://coming-soon-website']
