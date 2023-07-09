@@ -9,4 +9,5 @@ steps:
     args: ['rsync', '-r', 'dist', 'gs://coming-soon-website']
 
 options:
+  region: eu-north1
   logging: CLOUD_LOGGING_ONLY
