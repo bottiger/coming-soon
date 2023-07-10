@@ -4,7 +4,7 @@ module.exports = defineConfig({
 })
 
 module.exports = {
-  publicPath: '/coming-soon-website/',
+  VUE_APP_BASE_URL: '"https://storage.googleapis.com/coming-soon-website/"',
   css: {
     extract: false
   }
