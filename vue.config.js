@@ -4,6 +4,7 @@ module.exports = defineConfig({
 })
 
 module.exports = {
+  publicPath: '/coming-soon-website/',
   css: {
     extract: false
   }
