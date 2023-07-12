@@ -6,7 +6,7 @@ steps:
     args: ['build']
 
   - name: 'gcr.io/cloud-builders/gsutil'
-    args: ['rsync', '-r', 'dist', 'gs://coming-soon-website']
+    args: ['rsync', '-r', 'dist', 'gs://elonmeter.com']
 
 options:
   logging: CLOUD_LOGGING_ONLY
