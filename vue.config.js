@@ -3,8 +3,9 @@ module.exports = defineConfig({
   transpileDependencies: true
 })
 
+
+//   VUE_APP_BASE_URL: '"https://elonmeter.com/"',
 module.exports = {
-  VUE_APP_BASE_URL: '"https://elonmeter.com/"',
   css: {
     extract: false
   }
