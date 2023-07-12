@@ -4,6 +4,7 @@ module.exports = defineConfig({
 })
 
 module.exports = {
+  VUE_APP_BASE_URL: '"https://elonmeter.com/"',
   css: {
     extract: false
   }
