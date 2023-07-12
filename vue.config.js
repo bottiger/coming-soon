@@ -4,7 +4,6 @@ module.exports = defineConfig({
 })
 
 module.exports = {
-  VUE_APP_BASE_URL: '"https://storage.googleapis.com/coming-soon-website/"',
   css: {
     extract: false
   }
