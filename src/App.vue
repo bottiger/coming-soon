@@ -8,7 +8,7 @@
     <div id="title">
       <blockquote class="blockquote">
         <p class="mb-2 fs-2 text-light">“I feel very confident predicting autonomous robotaxis for Tesla next year,”</p>
-        <footer class="blockquote-footer">Elon mush at <cite title="Source Title"> Tesla Autonomy Investor Day 2019</cite></footer>
+        <footer class="blockquote-footer">Elon Musk at <cite title="Source Title"> Tesla Autonomy Investor Day 2019</cite></footer>
       </blockquote>
     </div>
     <div id="main">
