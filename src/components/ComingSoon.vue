@@ -4,20 +4,48 @@ import { Collapse } from 'vue-collapsed'
 
 const timelines = ref([
   {
-    title: 'Making Life Multiplanetary - mid 2020\'s',
+    title: 'Quadruple Twitters revenue and user base by 2028',
+    summary: "Mr. Musk claimed he would increase Twitter’s annual revenue to $26.4 billion by 2028, up from $5 billion last year. Cut Twitter’s reliance on advertising to less than 50 percent of revenue. Produce $15 million in revenue from a payments business. Reach 931 million users by 2028. Have 104 million subscribers for a mysterious X by 2028.",
     events: [
-      { title: 'Announce BFS', daysLater: '', date: '29 Sep 2017' },
-      { title: 'First Person on Mars', daysLater: '', date: '2020' },
-      { title: '2 years later', daysLater: '', date: '23 Sep 2017' },
-      { title: 'Event 4', daysLater: '', date: 'Today' }
+      { 
+        title: 'Slides leaked to the NYT', daysLater: '', date: '6 May 2022', img: 'twitter.webp', ref: [
+          {
+            link: 'https://www.nytimes.com/2022/05/06/technology/elon-musk-twitter-pitch-deck.html',
+            title: "Inside Elon Musk’s Big Plans for Twitter",
+            quote: "“Mr. Musk claimed he would increase Twitter’s annual revenue to $26.4 billion by 2028, up from $5 billion last year (2022).”",
+          },
+        ] 
+      },
+      { title: 'Waiting', daysLater: '', date: 'Today' }
     ],
-    moreInfo: 'This is the first item\'s accordion body. It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It\'s also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.',
+    moreInfo: '',
     isExpanded: false,
-    imgkey: "1000km",
-    category: 'tesla'
+    imgkey: "twitter",
+    category: 'twitter'
+  },
+  {
+    title: 'Defeat the [Twitter] spam bots or die trying',
+    summary: "",
+    events: [
+      { 
+        title: '', daysLater: '', date: '21 April 2022', img: 'twitter.webp', ref: [
+          {
+            link: 'https://twitter.com/elonmusk/status/1517215066550116354',
+            title: "Twitter",
+            quote: "“If our twitter bid succeeds, we will defeat the spam bots or die trying!”",
+          },
+        ] 
+      },
+      { title: 'Waiting', daysLater: '', date: 'Today' }
+    ],
+    moreInfo: '',
+    isExpanded: false,
+    imgkey: "twitter",
+    category: 'twitter'
   },
   {
     title: 'Rocket landing saftey on par with commercial airline',
+    summary: 'Currently commercial airlines succesfully land',
     events: [
       {
         title: 'Announcement', daysLater: '', date: '29 Sep 2017', ref: [
@@ -75,39 +103,6 @@ function handleIndividual(selectedIndex) {
   timelines.value[selectedIndex].isExpanded = !timelines.value[selectedIndex].isExpanded
 }
 
-/*
-function getTimeInterval(timeline, eventIndex) {
-  let earliestDate = Infinity;
-  let lastDate = -Infinity;
-
-  let currDate = new Date(timeline.events[eventIndex].date);
-  if (timeline.events[eventIndex].date.toLowerCase() === 'today') {
-    currDate = Date.now();
-  }
-
-  // Find the earliest and latest dates in the timeline
-  timeline.events.forEach((event) => {
-    if (event.date.toLowerCase() === 'today') {
-      lastDate = Math.max(lastDate, Date.now());
-    } else {
-      const eventDate = new Date(event.date);
-      earliestDate = Math.min(earliestDate, eventDate.getTime());
-      lastDate = Math.max(lastDate, eventDate.getTime());
-    }
-  });
-
-  // Calculate the total time interval in milliseconds
-  const totalInterval = lastDate - earliestDate;
-
-  // Calculate the relative interval for the current event
-  const interval = currDate - earliestDate;
-  let scaledInterval = (interval / totalInterval) * 100;
-
-  console.log(interval);
-
-  return Math.round(scaledInterval * 100) / 100; // round to two decimals
-}
-*/
 function getTimeInterval(timeline, eventIndex) {
   let earliestDate = Infinity;
   let lastDate = -Infinity;
@@ -138,6 +133,15 @@ function getTimeInterval(timeline, eventIndex) {
   }
 
   return scaledInterval;
+}
+
+/*
+function img_path(key, name){
+    return new URL(`./assets/${key}/${name}`, import.meta.url).href
+}
+*/
+function img_path(key, name) {
+  return `/${key}/${name}`;
 }
 
 
@@ -200,21 +204,8 @@ onMounted(() => {
 <template>
   <div class="section" v-for="(timeline, index) in timelines" :key="index">
     <strong>{{ timeline.title }}</strong>
-    <!--
-    <ul class="timeline">
-      <li v-for="(event, eventIndex) in timeline.events" :key="eventIndex" class="timeline-event"
-        :id="'event-' + (eventIndex + 1) + '-t' + (index + 1)">
-        <div class="event-content">
-          <div class="event-title">{{ event.title }}</div>
-          <div class="event-circle">
-            <div v-if="eventIndex < timeline.events.length - 1"><img src="@/assets/questionmark.png" alt=""></div>
-            <div v-else><span class="days-later"></span></div>
-          </div>
-          <div class="event-date">{{ event.date }}</div>
-        </div>
-      </li>
-    </ul>
-  -->
+    <div v-if="timeline.summary" class="event-summary fs-6">{{ timeline.summary }}</div>
+    
     <ul class="timeline">
       <li v-for="(event, eventIndex) in timeline.events" :key="eventIndex" class="timeline-event"
         :id="'event-' + (eventIndex + 1) + '-t' + (index + 1)"
@@ -222,7 +213,12 @@ onMounted(() => {
         <div class="event-content">
           <div class="event-title">{{ event.title }}</div>
           <div class="event-circle">
-            <div v-if="eventIndex < timeline.events.length - 1"><img src="@/assets/questionmark.png" alt=""></div>
+            <div v-if="eventIndex < timeline.events.length - 1">
+              <div v-if="event.img">
+                <img :src="img_path(timeline.imgkey, event.img)" />
+              </div>
+              <div v-else><img src="@/assets/questionmark.png" alt=""></div>
+            </div>
             <div v-else><span class="days-later"></span></div>
           </div>
           <div class="event-date">{{ event.date }}</div>
@@ -316,14 +312,6 @@ onMounted(() => {
   border: 2px solid #ccc;
 }
 
-/*
-.event-circle .days-later {
-  position: absolute;
-  color: red;
-  font-weight: bold;
-  font-size: 14px;
-}
-*/
 .event-circle .days-later {
   position: absolute;
   top: 50%;
@@ -351,63 +339,6 @@ onMounted(() => {
 .event-date {
   color: #888;
 }
-
-
-/*
-/* Custom margins for each event 
-/* Timeline 1 
-#event-1-t1 {
-  margin-left: 0;
-}
-
-#event-2-t1 {
-  margin-left: 40px;
-}
-
-#event-3-t1 {
-  margin-left: 80px;
-}
-
-#event-4-t1 {
-  position: absolute;
-  right: 0;
-}
-
-/* Timeline 2 
-#event-1-t2 {
-  margin-left: 0;
-}
-
-#event-2-t2 {
-  margin-left: 80px;
-}
-
-#event-3-t2 {
-  margin-left: 160px;
-}
-
-#event-4-t2 {
-  margin-left: 240px;
-}
-
-/* Timeline 3 
-#event-1-t3 {
-  margin-left: 0;
-}
-
-#event-2-t3 {
-  margin-left: 80px;
-}
-*/
-
-/* Add more custom margins for additional events */
-/* #event-3-t3 {
-        margin-left: ...;
-      }
-      #event-4-t3 {
-        margin-left: ...;
-      }
-      ... */
 
 .my-class {
   transition: height 300ms cubic-bezier(0.3, 0, 0.6, 1);
