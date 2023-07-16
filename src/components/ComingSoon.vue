@@ -36,7 +36,7 @@ const timelines = ref([
           },
         ] 
       },
-      { title: 'Waiting', daysLater: '', date: 'Today' }
+      { title: 'Any day now!', daysLater: '', date: 'Today' }
     ],
     moreInfo: '',
     isExpanded: false,
@@ -76,6 +76,7 @@ const timelines = ref([
     imgkey: "rocket-landing-safety",
     category: 'spacex'
   },
+  /*
   {
     title: 'Vertical takeoff and landing jet',
     events: [
@@ -97,6 +98,7 @@ const timelines = ref([
     imgkey: "verticaljet",
     category: 'misc'
   }
+  */
 ]);
 
 function handleIndividual(selectedIndex) {
@@ -168,6 +170,8 @@ const collapseAttrs = computed(() =>
 )
 
 onMounted(() => {
+
+  /*
   // Calculate the number of days since the first date in the timeline
   var eventDates = document.getElementsByClassName("event-date");
   var firstDate = parseDate(eventDates[0].innerHTML);
@@ -180,6 +184,29 @@ onMounted(() => {
   for (var i = 0; i < daysLaterElements.length; i++) {
     daysLaterElements[i].innerHTML = diffDays + " days later";
   }
+  */
+
+  // Get all the timeline elements
+var timelines = document.getElementsByClassName("timeline");
+
+// Iterate over each timeline
+for (var t = 0; t < timelines.length; t++) {
+  var timeline = timelines[t];
+
+  // Calculate the number of days since the first date in the timeline
+  var eventDates = timeline.getElementsByClassName("event-date");
+  var firstDate = parseDate(eventDates[0].innerHTML);
+  var today = new Date();
+  var timeDiff = Math.abs(today.getTime() - firstDate.getTime());
+  var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+  // Update the "X days later" text within the current timeline
+  var daysLaterElements = timeline.getElementsByClassName("days-later");
+  for (var i = 0; i < daysLaterElements.length; i++) {
+    daysLaterElements[i].innerHTML = diffDays + " days later";
+  }
+}
+
 
   // Function to parse the date string in format "dd MMM yyyy"
   function parseDate(dateString) {
@@ -203,10 +230,10 @@ onMounted(() => {
 
 <template>
   <div class="section" v-for="(timeline, index) in timelines" :key="index">
-    <strong>{{ timeline.title }}</strong>
-    <div v-if="timeline.summary" class="event-summary fs-6">{{ timeline.summary }}</div>
+    <p class="h2">{{ timeline.title }}</p>
+    <p v-if="timeline.summary" class="event-summary fs-6">{{ timeline.summary }}</p>
     
-    <ul class="timeline">
+    <ul class="timeline py-3">
       <li v-for="(event, eventIndex) in timeline.events" :key="eventIndex" class="timeline-event"
         :id="'event-' + (eventIndex + 1) + '-t' + (index + 1)"
         :style="{ left: getTimeInterval(timeline, eventIndex) + '%' }">
@@ -226,7 +253,7 @@ onMounted(() => {
       </li>
     </ul>
 
-    <div>
+    <div class="ref-box p-2 rounded">
       <a class="cursor-pointer" v-bind="toggleAttrs[index]" @click="handleIndividual(index)" :class="[
         'Panel',
         {
@@ -342,5 +369,9 @@ onMounted(() => {
 
 .my-class {
   transition: height 300ms cubic-bezier(0.3, 0, 0.6, 1);
+}
+
+.ref-box {
+  background-color: #CDCDCD;
 }
 </style>

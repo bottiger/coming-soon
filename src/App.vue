@@ -1,10 +1,5 @@
 <template>
-  <div id="container">
-    <!--
-    <div id="head" class="align-bottom">
-      <img src="@/assets/elon-header.webp">
-    </div>
-  -->
+  <div id="container" class="m-0 m-lg-5">
     <div id="title">
       <blockquote class="blockquote">
         <p class="mb-2 fs-2 text-light">“I feel very confident predicting autonomous robotaxis for Tesla next year,”</p>
@@ -15,6 +10,19 @@
       <ComingSoon />
     </div>
   </div>
+  <footer
+    class="text-center text-lg-start text-white"
+    style="background-color: #3e4551"
+  >
+    <div
+         class="text-center p-1"
+         style="background-color: rgba(0, 0, 0, 0.2)"
+         >
+      <a class="btn btn-outline-light btn-floating m-1" href="https://github.com/bottiger/elonmeter" role="button">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+  </footer>
 </template>
 
 <script>
@@ -29,13 +37,7 @@ export default {
 </script>
 
 <style>
-/*
-body {
-  margin-top: 60px;
-  margin-left: 30px;
-  background-color: #2c3e50;
-}
-*/
+
 #container {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -53,7 +55,6 @@ body {
 }
 
 #main {
-  /*color: #2c3e50;*/
   background-color: whitesmoke;
   padding: 20px;
   border-radius: 25px;
