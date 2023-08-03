@@ -6,6 +6,18 @@ module.exports = defineConfig({
 
 //   VUE_APP_BASE_URL: '"https://elonmeter.com/"',
 module.exports = {
+  chainWebpack: config => {
+    config.module
+        .rule('responsive')
+        .test(/\.(jpe?g|png|webp)$/i)
+        .use('responsive-loader')
+        .loader('responsive-loader')
+        .tap(() => {
+            return {
+                adapter: require('responsive-loader/sharp'),
+            }
+        })
+  },
   css: {
     extract: false
   }

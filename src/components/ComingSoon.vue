@@ -142,10 +142,11 @@ function img_path(key, name){
     return new URL(`./assets/${key}/${name}`, import.meta.url).href
 }
 */
+/*
 function img_path(key, name) {
   return `/${key}/${name}`;
 }
-
+*/
 
 /**
  * Accessibility attributes
@@ -170,21 +171,6 @@ const collapseAttrs = computed(() =>
 )
 
 onMounted(() => {
-
-  /*
-  // Calculate the number of days since the first date in the timeline
-  var eventDates = document.getElementsByClassName("event-date");
-  var firstDate = parseDate(eventDates[0].innerHTML);
-  var today = new Date();
-  var timeDiff = Math.abs(today.getTime() - firstDate.getTime());
-  var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
-
-  // Update the "X days later" text
-  var daysLaterElements = document.getElementsByClassName("days-later");
-  for (var i = 0; i < daysLaterElements.length; i++) {
-    daysLaterElements[i].innerHTML = diffDays + " days later";
-  }
-  */
 
   // Get all the timeline elements
 var timelines = document.getElementsByClassName("timeline");
@@ -242,7 +228,12 @@ for (var t = 0; t < timelines.length; t++) {
           <div class="event-circle">
             <div v-if="eventIndex < timeline.events.length - 1">
               <div v-if="event.img">
-                <img :src="img_path(timeline.imgkey, event.img)" />
+                <!--<img :src="img_path(timeline.imgkey, event.img)" />-->
+                <img
+                  src="@/assets/twitter/twitter.webp"
+                  :srcset="require('@/assets/twitter/twitter.webp?resize&sizes[]=50&sizes[]=60&sizes[]=70')"
+                  alt="Twitter logo"
+                />
               </div>
               <div v-else><img src="@/assets/questionmark.png" alt=""></div>
             </div>
