@@ -3,6 +3,53 @@ import { computed, ref, onMounted } from 'vue';
 import { Collapse } from 'vue-collapsed'
 
 const timelines = ref([
+{
+    title: 'Cage Fight',
+    summary: "Two tech billionaires seemingly agreed to a “cage match” face off.",
+    events: [
+      { 
+        title: 'Annoncement', daysLater: '', date: '21 Jun 2023', img: 'twitter.webp', ref: [
+          {
+            link: 'https://twitter.com/elonmusk/status/1671364992665264131',
+            title: "Annoncement",
+            quote: "“I’m up for a cage match if he is lol”",
+          },
+        ] 
+      },
+      { 
+        title: 'Zuckerberg waits confirmation', daysLater: '', date: '05 Aug 2023', img: 'twitter.webp', ref: [
+          {
+            link: '',
+            title: "Zuckerberg Thread post",
+            quote: "“I’m ready today. I suggested Aug 26 when he first challenged, but he hasn’t confirmed. Not holding my breath. I love this sport and will continue competing with people who train no matter what happens here.”",
+          },
+        ] 
+      },
+      { 
+        title: 'Fight is on', daysLater: '', date: '06 Aug 2023', img: 'twitter.webp', ref: [
+          {
+            link: 'https://twitter.com/elonmusk/status/1688091377823895552',
+            title: "Live stream",
+            quote: "“Zuck v Musk fight will be live-streamed on 𝕏.”",
+          },
+        ] 
+      },
+      { 
+        title: 'Fight is on hold', daysLater: '', date: '06 Aug 2023', img: 'twitter.webp', ref: [
+          {
+            link: 'https://twitter.com/elonmusk/status/1688377445957652480',
+            title: "Back pain",
+            quote: "“Exact date is still in flux. I’m getting an MRI of my neck & upper back tomorrow. ”",
+          },
+        ] 
+      },
+      { title: 'Waiting', daysLater: '', date: 'Today' }
+    ],
+    moreInfo: '',
+    isExpanded: false,
+    imgkey: "twitter",
+    category: 'cagefight'
+  },
   {
     title: 'Quadruple Twitters revenue and user base by 2028',
     summary: "Mr. Musk claimed he would increase Twitter’s annual revenue to $26.4 billion by 2028, up from $5 billion last year. Cut Twitter’s reliance on advertising to less than 50 percent of revenue. Produce $15 million in revenue from a payments business. Reach 931 million users by 2028. Have 104 million subscribers for a mysterious X by 2028.",
